@@ -1,6 +1,6 @@
 export const plantData = [
     {
-        "name": "雷暴芋 (Colocasia 'Thunderstorm')",
+        "name": "雷雨芋 (Colocasia 'Thunderstorm')",
         "description": "引人注目的觀葉植物，以其深色、幾乎黑色的葉子和鮮明的葉脈而聞名。",
         "imageUrl": "https://fuzzyroots.co.za/cdn/shop/products/3-8.png?v=1707072745",
         "altText": "Colocasia Thunderstorm 植物",
@@ -89,6 +89,12 @@ export const plantData = [
         "imageUrl": "https://kmweb.moa.gov.tw/files/IMITA_Gallery/44/3445958ac5_m.jpg",
         "altText": "以多彩葉片為特色的彩葉草。",
         "linkUrl": "/Plant-Astro/plants/彩葉草/index.html"
+    },
+    {
+        "name": "粉脈閃電芋 (Colocasia Redemption)",
+        "description": "擁有天鵝絨質感的深黑葉片，與從中心放射出的霓虹粉色葉脈形成極致對比。其戲劇性的外觀使其成為極具收藏價值的觀葉植物。",
+        "imageUrl": "https://i.etsystatic.com/21722855/r/il/15e751/5259885871/il_570xN.5259885871_8h9x.jpg",
+        "altText": "擁有深黑葉片與霓虹粉色葉脈的救贖芋。",
+        "linkUrl": "/Plant-Astro/plants/粉脈閃電芋/index.html"
     }
 ];
-
