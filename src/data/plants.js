@@ -93,7 +93,7 @@ export const plantData = [
     {
         "name": "粉脈閃電芋 (Colocasia Redemption)",
         "description": "擁有天鵝絨質感的深黑葉片，與從中心放射出的霓虹粉色葉脈形成極致對比。其戲劇性的外觀使其成為極具收藏價值的觀葉植物。",
-        "imageUrl": "https://i.etsystatic.com/21722855/r/il/15e751/5259885871/il_570xN.5259885871_8h9x.jpg",
+        "imageUrl": "https://www.mikiorchid.com.tw/upload/Variety/172603442673278a4a86960eeb576a8fd4c9ec6997-66e131fa1ab58_1726034426.webp",
         "altText": "擁有深黑葉片與霓虹粉色葉脈的救贖芋。",
         "linkUrl": "/Plant-Astro/plants/粉脈閃電芋/index.html"
     }
