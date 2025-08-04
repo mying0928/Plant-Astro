@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>互動式雷雨芋（Colocasia）銷售指南</title>
+    <title>互動式芋屬植物（Colocasia）銷售指南</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Velvet Noir -->
-    <!-- Application Structure Plan: The SPA is designed as an interactive decision-making tool for a plant seller, not a linear report. The structure flows from aesthetic choice to practical cultivation. It starts with a Hero section to clarify the critical naming issue. The core is the "Interactive Pot Selector," which transforms the static report matrix into a dynamic tool where users select a target market vibe and get tailored pot recommendations and photo tips. This directly answers the user's primary need. It is followed by a "Cultivation Guide" using interactive charts (Chart.js) and clear tabs to make complex soil science digestible and actionable. This structure prioritizes user engagement and utility over simply reproducing the report's layout. -->
-    <!-- Visualization & Content Choices: 
-        1. Report Info: Pot style matrix -> Goal: Compare & Decide -> Viz/Method: JS-powered interactive card display. Interaction: User clicks a "Market Vibe" button, which dynamically updates the content of a display area showing relevant pot styles, rationale, and photography advice. Justification: This is more engaging and user-centric than a static table, directly aiding the decision process. Library: Vanilla JS.
-        2. Report Info: Soil mix recipes (text ratios) -> Goal: Inform & Compare -> Viz/Method: Chart.js doughnut charts. Interaction: Charts visually represent component proportions. Hovering shows details. Justification: Visual charts are far easier to comprehend and compare at a glance than text-based ratios. Library: Chart.js.
-        3. Report Info: Plant's aesthetic/biological traits -> Goal: Inform -> Viz/Method: Styled HTML cards with icons (Unicode). Interaction: Static display for quick reference. Justification: Clear, scannable presentation of key facts. Library: Tailwind CSS.
+    <!-- 
+        Application Plan:
+        This is an interactive sales strategy tool for a plant seller focusing on a specific Colocasia variety.
+        The structure is designed to guide the user from a critical business decision (naming) to aesthetic choices (potting & photography) and finally to practical cultivation.
+
+        1.  **Identity Section**: Addresses the crucial issue of plant naming and market positioning right away. This is a high-value strategic insight.
+        2.  **Interactive Pot Selector**: The core of the application. It transforms a static list of recommendations into an engaging tool. Users click a "market vibe" and get tailored advice, directly answering their primary question about potting for commercial photography. This is implemented with vanilla JavaScript for simplicity and speed.
+        3.  **Cultivation Guide**: Uses Chart.js to visualize complex soil mix ratios, making them easy to understand at a glance. It provides universal expert recipes and then explains how to adapt care routines for different climates in Taiwan, which is more practical than creating slightly different soil recipes per region.
+        4.  **Plant Profile**: A quick-reference section using styled cards for key aesthetic and biological traits.
+        5.  **Styling**: A "Velvet Noir" theme (dark gray/black with vibrant pink accents) is chosen to directly reflect the plant's appearance (dark velvety leaves, pink veins), creating a premium and cohesive user experience.
     -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Noto Sans TC', sans-serif;
@@ -33,6 +36,8 @@
         .active-tab {
             background-color: #ec4899; /* pink-500 */
             color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
         }
         .inactive-tab {
             background-color: #374151; /* gray-700 */
@@ -50,7 +55,7 @@
 <body class="antialiased">
 
     <!-- Header & Navigation -->
-    <header class="bg-gray-900/80 backdrop-blur-md sticky top-0 z-50 shadow-lg shadow-gray-950/50">
+    <header class="bg-gray-900/80 backdrop-blur-md sticky top-0 z-50 shadow-lg shadow-pink-900/20">
         <div class="container mx-auto px-4">
             <nav class="flex justify-between items-center py-4">
                 <h1 class="text-xl md:text-2xl font-bold text-gray-100">
@@ -63,9 +68,7 @@
                     <a href="#profile" class="inactive-nav hover:text-pink-400 transition-colors duration-300">植物檔案</a>
                 </div>
                 <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-300 hover:bg-gray-700 focus:outline-none">
-                    <span class="block w-6 h-0.5 bg-current"></span>
-                    <span class="block w-6 h-0.5 bg-current mt-1.5"></span>
-                    <span class="block w-6 h-0.5 bg-current mt-1.5"></span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </nav>
         </div>
@@ -83,23 +86,23 @@
         <!-- Section 1: Identity -->
         <section id="identity" class="mb-16 scroll-mt-24">
             <div class="text-center mb-10">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-100 mb-4">解開「雷暴芋」的身份之謎</h2>
-                <p class="max-w-3xl mx-auto text-lg text-gray-400">要成功行銷，必先正名。您手中的植物擁有驚艷的粉紅脈紋，但這與市場上公認的白脈「雷暴芋」有所不同，這是一個必須正視的商業挑戰與機遇。</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-100 mb-4">解開黑葉粉脈芋的身份之謎</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-400">要成功行銷，必先正名。您手中的植物擁有驚艷的粉紅脈紋，這是一個必須正視的商業挑戰與機遇。</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+                <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-red-500/50 transition-all duration-300">
                     <h3 class="font-bold text-xl mb-3 text-red-400 flex items-center">
                         <span class="text-2xl mr-2">⚠️</span>市場風險：命名的悖論
                     </h3>
-                    <p class="text-gray-300">您提供的植物（黑葉粉脈）若直接以「雷暴芋 (Thunderstorm)」之名銷售，可能與權威資料中記載的「雷暴芋 (Thunder Storm)」（黑葉白脈）產生衝突，引發客戶困惑與品牌信譽風險。這株植物的表型更接近 *Colocasia* 'Redemption' 或 'Caldera Pink'。</p>
+                    <p class="text-gray-300">您提供的植物（黑葉粉脈）若直接以「Black Lava」或「Thunderstorm」之名銷售，可能與權威資料中記載的其他品種產生衝突，引發客戶困惑與品牌信譽風險。例如，市場公認的 *Colocasia* 'Thunder Storm' 是白脈。您的品種表型更接近 *Colocasia* 'Redemption'。</p>
                 </div>
 
-                <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+                <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-green-500/50 transition-all duration-300">
                     <h3 class="font-bold text-xl mb-3 text-green-400 flex items-center">
                         <span class="text-2xl mr-2">💡</span>策略建議：化特徵為賣點
                     </h3>
-                    <p class="text-gray-300">建議採用基於其獨特視覺特徵的描述性名稱，誠實管理客戶期望，並創造獨特市場身份。例如：「粉脈雷暴芋 (Pink Vein Thunderstorm)」、「粉紅閃電 (Pink Lightning)」或「黑絲絨洋紅 (Black Velvet Magenta)」，將視覺衝擊力直接轉化為品牌吸引力。</p>
+                    <p class="text-gray-300">建議採用基於其獨特視覺特徵的描述性商品名，誠實管理客戶期望，並創造獨特市場身份。例如：「粉脈熔岩 (Pink Lava)」、「霓虹閃電 (Neon Flash)」或「黑絲絨洋紅 (Black Velvet Magenta)」，將視覺衝擊力直接轉化為品牌吸引力。</p>
                 </div>
             </div>
         </section>
@@ -115,7 +118,7 @@
                 <button data-style="minimalist" class="pot-style-btn px-4 py-2 rounded-full font-semibold transition-all duration-300 ease-in-out shadow-sm active-tab">現代極簡</button>
                 <button data-style="artisan" class="pot-style-btn px-4 py-2 rounded-full font-semibold transition-all duration-300 ease-in-out shadow-sm inactive-tab">工匠質樸</button>
                 <button data-style="luxury" class="pot-style-btn px-4 py-2 rounded-full font-semibold transition-all duration-300 ease-in-out shadow-sm inactive-tab">奢華宣言</button>
-                <button data-style="goth" class="pot-style-btn px-4 py-2 rounded-full font-semibold transition-all duration-300 ease-in-out shadow-sm inactive-tab">哥德花園</button>
+                <button data-style="goth" class="pot-style-btn px-4 py-2 rounded-full font-semibold transition-all duration-300 ease-in-out shadow-sm inactive-tab">暗黑哥德</button>
             </div>
 
             <div id="pot-display" class="bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 border border-gray-700 transition-opacity duration-500">
@@ -131,12 +134,12 @@
             </div>
             
             <div class="bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 border border-gray-700">
-                <div class="mb-6">
+                <div class="mb-8">
                      <h3 class="font-bold text-2xl text-center mb-4 text-gray-200">天南星科介質的科學</h3>
-                     <p class="text-center max-w-2xl mx-auto text-gray-400">芋屬植物雖喜愛水份，但在盆栽環境中，根系極易因缺氧而腐爛。成功的關鍵在於介質必須<strong class="text-pink-500">同時鎖住水份與空氣</strong>。這就是專業「塊狀介質」的核心原理。</p>
+                     <p class="text-center max-w-2xl mx-auto text-gray-400">芋屬植物雖喜愛水份，但在盆栽環境中，根系極易因缺氧而腐爛。成功的關鍵在於介質必須<strong class="text-pink-500">同時鎖住水份與空氣</strong>。這就是專業「塊狀介質」的核心原理，避免使用易板結的純泥炭土或培養土。</p>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-8">
+                <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
                     <div class="text-center">
                         <h4 class="font-bold text-xl mb-2 text-gray-200">通用專業配方</h4>
                         <p class="text-sm text-gray-500 mb-4 h-12">均衡可靠，適合多數環境。</p>
@@ -144,7 +147,7 @@
                     </div>
                     <div class="text-center">
                         <h4 class="font-bold text-xl mb-2 text-gray-200">芋屬保水配方</h4>
-                        <p class="text-sm text-gray-500 mb-4 h-12">針對高水分需求，減少澆水頻率。</p>
+                        <p class="text-sm text-gray-500 mb-4 h-12">針對高水分需求，或炎熱、乾燥環境。</p>
                         <div class="chart-container"><canvas id="mix2Chart"></canvas></div>
                     </div>
                      <div class="text-center">
@@ -154,15 +157,25 @@
                     </div>
                 </div>
 
-                <div class="mt-8 pt-6 border-t border-gray-700">
-                    <h4 class="font-bold text-xl text-center mb-4 text-gray-200">介質成分解析</h4>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
-                        <div class="bg-gray-700 p-3 rounded-lg"><div class="text-3xl mb-1">🌲</div><h5 class="font-semibold text-gray-200">蘭花樹皮</h5><p class="text-xs text-gray-400">提供結構與通氣</p></div>
-                        <div class="bg-gray-700 p-3 rounded-lg"><div class="text-3xl mb-1">🥥</div><h5 class="font-semibold text-gray-200">椰纖土</h5><p class="text-xs text-gray-400">保水與永續</p></div>
-                        <div class="bg-gray-700 p-3 rounded-lg"><div class="text-3xl mb-1">🌋</div><h5 class="font-semibold text-gray-200">浮石/珍珠岩</h5><p class="text-xs text-gray-400">絕佳排水性</p></div>
-                        <div class="bg-gray-700 p-3 rounded-lg"><div class="text-3xl mb-1">🐛</div><h5 class="font-semibold text-gray-200">蚯蚓糞</h5><p class="text-xs text-gray-400">生物營養劑</p></div>
-                        <div class="bg-gray-700 p-3 rounded-lg"><div class="text-3xl mb-1">⚫</div><h5 class="font-semibold text-gray-200">園藝木炭</h5><p class="text-xs text-gray-400">吸附雜質</p></div>
-                        <div class="bg-gray-700 p-3 rounded-lg"><div class="text-3xl mb-1">🌿</div><h5 class="font-semibold text-gray-200">高品質堆肥</h5><p class="text-xs text-gray-400">緩釋養分</p></div>
+                <div class="mt-10 pt-8 border-t border-gray-700">
+                    <h3 class="font-bold text-2xl text-center mb-6 text-gray-200">台灣各區養護要點</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-gray-700/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg mb-2 text-pink-400">北部 (潮濕冬季)</h4>
+                            <p class="text-gray-300">冬季低溫潮濕，根部活動減緩。應<strong class="text-white">顯著減少澆水</strong>，待介質半乾再澆。可考慮使用「極致通氣配方」以防爛根。注意寒流，避免霜害。</p>
+                        </div>
+                        <div class="bg-gray-700/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg mb-2 text-pink-400">中部 (日夜溫差)</h4>
+                            <p class="text-gray-300">氣候相對穩定。通用配方即可。夏季注意西曬，避免葉片灼傷。冬季澆水可略微減少，但不如北部嚴格。</p>
+                        </div>
+                        <div class="bg-gray-700/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg mb-2 text-pink-400">南部 (長夏酷熱)</h4>
+                            <p class="text-gray-300">生長季長，水分蒸發快。需<strong class="text-white">頻繁澆水</strong>，保持介質濕潤但不積水。可使用「芋屬保水配方」。需提供遮陽，避免全日曝曬。</p>
+                        </div>
+                        <div class="bg-gray-700/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-lg mb-2 text-pink-400">東部 (濕潤多雨)</h4>
+                            <p class="text-gray-300">濕度高，類似北部。注意介質排水性，避免因連續降雨導致盆內積水。通風至關重要，有助於預防葉片病害。</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -179,15 +192,15 @@
                 <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700 text-center"><div class="text-4xl mb-3">🎨</div><h3 class="text-xl font-bold mb-2 text-gray-200">顏色與質地</h3><p class="text-gray-300">深邃的紫黑色葉片，帶有天鵝絨般的光澤，是突顯粉紅葉脈的完美畫布。</p></div>
                 <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700 text-center"><div class="text-4xl mb-3">⚡</div><h3 class="text-xl font-bold mb-2 text-gray-200">葉脈紋理</h3><p class="text-gray-300">霓虹或熱粉色的葉脈，與深色背景形成強烈對比，創造電光火石般的視覺衝擊。</p></div>
                 <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700 text-center"><div class="text-4xl mb-3">💚</div><h3 class="text-xl font-bold mb-2 text-gray-200">葉片結構</h3><p class="text-gray-300">寬大的心形或箭頭形葉片，葉尖自然朝下，是芋屬植物的典型特徵。</p></div>
-                <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700 text-center"><div class="text-4xl mb-3">📏</div><h3 class="text-xl font-bold mb-2 text-gray-200">尺寸與習性</h3><p class="text-gray-300">叢生型，成熟植株可達60至180公分高，需要足夠穩固的大盆器支撐。</p></div>
+                <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700 text-center"><div class="text-4xl mb-3">📏</div><h3 class="text-xl font-bold mb-2 text-gray-200">尺寸與習性</h3><p class="text-gray-300">叢生型，成熟植株可達60至120公分高，需要足夠穩固的大盆器支撐。</p></div>
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-gray-950 text-gray-500 mt-16">
-        <div class="container mx-auto px-4 py-6 text-center">
-            <p>互動式雷雨芋銷售指南 | 為商業成功而生</p>
+    <footer class="bg-gray-900 mt-16">
+        <div class="container mx-auto px-4 py-6 text-center text-gray-500">
+            <p>互動式芋屬植物銷售指南 | 為商業成功而生</p>
         </div>
     </footer>
 
@@ -228,7 +241,7 @@
                     photoGoal: '創造精緻、有情調的高端編輯風格影像。光線控制至關重要，以管理反射並突顯材料的豐富質感。'
                 },
                 goth: {
-                    title: '哥德花園：營造獨特氛圍',
+                    title: '暗黑哥德：營造獨特氛圍',
                     materials: '炭黑混凝土、深色紋理陶瓷、啞光黑金屬',
                     philosophy: '完全迎合「哥德植物」的潮流，創造一個強大、統一的視覺陳述。盆器與植物融合成一個單一的黑色雕塑，而粉紅色的葉脈則成為唯一的色彩亮點，對特定受眾極為有效。',
                     photoGoal: '創造戲劇性、高衝擊力、氛圍濃厚的影像，通常使用低調(low-key)照明來增強神秘感與戲劇效果。'
@@ -251,7 +264,7 @@
                                 <h4 class="font-semibold text-lg mb-2 text-gray-300">風格理念</h4>
                                 <p class="text-gray-400">${data.philosophy}</p>
                             </div>
-                            <div class="bg-gray-700/50 p-4 rounded-lg">
+                            <div class="bg-gray-700/50 p-4 rounded-lg border border-pink-500/30">
                                 <h4 class="font-semibold text-lg mb-2 text-pink-400">攝影目標</h4>
                                 <p class="text-gray-300">${data.photoGoal}</p>
                             </div>
@@ -280,18 +293,18 @@
             // Chart.js Soil Mixes
             const chartOptions = {
                 responsive: true,
-                maintainAspectRatio: false,
+                maintainAspectRatio: true,
                 plugins: {
                     legend: {
                         position: 'bottom',
                         labels: {
                             font: {
-                                size: 10,
-                                color: '#9ca3af' // gray-400
+                                size: 11,
+                                family: "'Noto Sans TC', sans-serif"
                             },
-                            padding: 10,
+                            padding: 15,
                             boxWidth: 12,
-                            color: '#9ca3af'
+                            color: '#9ca3af' // gray-400
                         }
                     },
                     tooltip: {
@@ -306,6 +319,12 @@
                                 }
                                 return label;
                             }
+                        },
+                        bodyFont: {
+                            family: "'Noto Sans TC', sans-serif"
+                        },
+                        titleFont: {
+                             family: "'Noto Sans TC', sans-serif"
                         }
                     }
                 },
@@ -317,7 +336,7 @@
             new Chart(document.getElementById('mix1Chart'), {
                 type: 'doughnut',
                 data: {
-                    labels: ['蘭花樹皮', '椰纖土', '浮石/珍珠岩', '蚯蚓糞', '園藝木炭'],
+                    labels: ['蘭花樹皮', '椰纖塊', '浮石/珍珠岩', '蚯蚓糞', '園藝木炭'],
                     datasets: [{
                         label: '通用專業配方',
                         data: [4, 3, 2, 1, 0.5],
@@ -332,10 +351,10 @@
             new Chart(document.getElementById('mix2Chart'), {
                 type: 'doughnut',
                 data: {
-                    labels: ['蘭花樹皮', '椰纖土', '浮石/珍珠岩', '高品質堆肥', '蚯蚓糞'],
+                    labels: ['椰纖塊', '蘭花樹皮', '高品質堆肥', '浮石/珍珠岩', '蚯蚓糞'],
                     datasets: [{
                         label: '芋屬保水配方',
-                        data: [3, 4, 2, 2, 1],
+                        data: [4, 3, 2, 2, 1],
                         backgroundColor: chartColors,
                         borderColor: '#1f2937',
                         borderWidth: 4
@@ -347,10 +366,10 @@
             new Chart(document.getElementById('mix3Chart'), {
                 type: 'doughnut',
                 data: {
-                    labels: ['蘭花樹皮', '椰纖土', '浮石/珍珠岩', '蚯蚓糞', '園藝木炭'],
+                    labels: ['蘭花樹皮', '浮石/珍珠岩', '椰纖塊', '園藝木炭', '蚯蚓糞'],
                     datasets: [{
                         label: '極致通氣配方',
-                        data: [5, 2, 3, 1, 1],
+                        data: [5, 3, 2, 1, 1],
                         backgroundColor: chartColors,
                         borderColor: '#1f2937',
                         borderWidth: 4
@@ -361,25 +380,26 @@
 
             // Active nav link on scroll
             const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('header nav a');
+            const navLinks = document.querySelectorAll('header nav a, #mobile-menu a');
 
-            window.addEventListener('scroll', () => {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 120) {
-                        current = section.getAttribute('id');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active-nav');
+                            link.classList.add('inactive-nav');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active-nav');
+                                link.classList.remove('inactive-nav');
+                            }
+                        });
                     }
                 });
+            }, { rootMargin: "-30% 0px -70% 0px" });
 
-                navLinks.forEach(a => {
-                    a.classList.remove('active-nav');
-                    a.classList.add('inactive-nav');
-                    if (a.href.includes(current)) {
-                        a.classList.add('active-nav');
-                        a.classList.remove('inactive-nav');
-                    }
-                });
+            sections.forEach(section => {
+                observer.observe(section);
             });
         });
     </script>
